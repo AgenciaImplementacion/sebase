@@ -4,7 +4,7 @@
         Build the Base Framework by http://www.softenvironment.ch
 	using Ant.
   </description>
-  
+
   <!-- set global properties for this build -->
   <property name="src" value="${basedir}/src"/>
   <property name="build" value="${basedir}/build"/>
@@ -32,7 +32,7 @@
 			    <path location="${jfcunit}"/>
 		</path>
 
-	
+
 
   <target name="init">
     <!-- Create the time stamp -->
@@ -65,10 +65,11 @@
 	<fileset dir="${build}/classes" includes="**/*.class" excludes="**/test/*.class, SeBaseTestSuite.class"/>
     	<fileset dir="${src}" includes="**/*.properties"/>
     	<fileset dir="resources/de" includes="**/*.properties"/>
+      <fileset dir="resources/es" includes="**/*.properties"/>
     	<fileset dir="resources/fr" includes="**/*.properties"/>
     	<fileset dir="resources/it" includes="**/*.properties"/>
     	<fileset dir="resources/ru" includes="**/*.properties"/>
-    	<fileset dir="resources/zh" includes="**/*.properties"/>		
+    	<fileset dir="resources/zh" includes="**/*.properties"/>
     	<fileset dir="${src}" includes="**/*.gif"/>
     	<fileset dir="${src}" includes="**/*.jpg"/>
     	<fileset dir="${src}" includes="**/*.png"/>
@@ -77,14 +78,14 @@
     </jar>
   </target>
 
-	
+
 	<target depends="init" name="javadocs">
 	    <mkdir dir="${build}/javadoc/api"/>
 	    <javadoc Public="true" Windowtitle="${ant.project.name}" destdir="${build}/javadoc/api">
 	    	<sourcepath path="${src}"/>
 	    </javadoc>
 	  </target>
-	
+
   <target depends="init" name="srcdist">
     <delete file="${dist}/${ant.project.name}-${buildnr}.src.zip" quiet="true"/>
     <zip zipfile="${dist}/${ant.project.name}-${buildnr}.src.zip">
@@ -96,6 +97,7 @@
 			<patternset includes="other/README"/>
 	    	<patternset includes="src/**" excludes="**/CVS/*;**/bak~/*"/>
 			<patternset includes="resources/de/**/*.properties"/>
+      <patternset includes="resources/es/**/*.properties"/>
 			<patternset includes="resources/fr/**/*.properties"/>
 			<patternset includes="resources/it/**/*.properties"/>
 			<patternset includes="resources/ru/**/*.properties"/>
@@ -103,18 +105,18 @@
     	</zipfileset>
     </zip>
   </target>
-  
+
   <target name="clean">
     <delete dir="${build}"/>
   </target>
-	
+
 	<target depends="jar" name="compile-test">
 		    <!-- Compile the java code from ${src} into ${build}/classes -->
 		    <mkdir dir="${build}/classes-test"/>
 		    <javac destdir="${build}/classes-test" includes="**/test/*.java" debug="on" source="6" target="1.6">
 		    	<classpath refid="classpath.test" />
 		    	<src path="${src}" />
-		    	<src path="${test}" />	    		    	
+		    	<src path="${test}" />
 		    </javac>
 		</target>
 		<target name="junit" description="Runs the unit tests" depends="compile-test">
@@ -132,7 +134,7 @@
 		        </junit>
 		    </target>
 
-			
+
 		    <target depends="junit" name="junitreport" description="Create a report for the rest result">
 		    	<delete dir="${junit.out.dir.html}"/>
 		        <mkdir dir="${junit.out.dir.html}"/>
