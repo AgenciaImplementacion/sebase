@@ -4,7 +4,7 @@ import javax.swing.Icon;
 
 import ch.ehi.basics.i18n.ResourceBundle;
 
-/* 
+/*
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
@@ -15,7 +15,7 @@ import ch.ehi.basics.i18n.ResourceBundle;
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
  */
- 
+
 /**
  * NLS-Utility for common reusable User Interface expressions (CUA).
  * @author Peter Hirzel <i>soft</i>Environment
